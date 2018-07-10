@@ -65,15 +65,12 @@ function Ball:startMovement(servingPlayer)
 end
 
 function Ball:reset()
-    self.position.x = VIRTUAL_WIDTH / 2 - 2
-    self.position.y = VIRTUAL_HEIGHT / 2 - 2
-    self.velocity.x = 0
-    self.velocity.y = 0
+    self.position = Position(VIRTUAL_WIDTH / 2 - 2, VIRTUAL_HEIGHT / 2 - 2)
+    self.velocity = Velocity(0, 0)
 end
 
 function Ball:update(deltaTime)
-    self.position.x = self.position.x + self.velocity.x * deltaTime
-    self.position.y = self.position.y + self.velocity.y * deltaTime
+    self.position = self.position:updatePosition(self.velocity, deltaTime)
 end
 
 function Ball:render()
